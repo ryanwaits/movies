@@ -6,6 +6,10 @@ class Movie < ApplicationRecord
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
   def self.search search
-    where("title ILIKE ?", "%#{search}%")
+    if search
+      self.where("title ILIKE ?", "%#{search}%")
+    else
+      self.all.order('created_at DESC')
+    end
   end
 end
