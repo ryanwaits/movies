@@ -20,7 +20,16 @@ class MoviesController < ApplicationController
     end
   end
 
-  def new
+  def edit
+  end
+
+  def update
+    @movie.update_attributes(movie_params)
+    if @movie.save
+      redirect_to @movie
+    else
+      render :edit
+    end
   end
 
   private 
