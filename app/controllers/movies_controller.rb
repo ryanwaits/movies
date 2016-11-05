@@ -2,7 +2,11 @@ class MoviesController < ApplicationController
   before_action :find_movie, only: [:show, :edit, :update, :destroy]
 
   def index
-    @movies = Movie.all.order('created_at DESC')
+    if params[:search]
+      @movies = Movie.search(params[:search]).order('created_at DESC')
+    else
+      @movies = Movie.all.order('created_at DESC')
+    end
   end
 
   def show
