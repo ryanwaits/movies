@@ -12,14 +12,19 @@
   <body>
     <nav class="nav" style="padding: 1.5%;">
       <div class="nav-left">
-        <a class="nav-item is-brand" href="#">
-          <img src="http://bulma.io/images/bulma-type.png" alt="Bulma logo">
-        </a>
+        <%= link_to 'Home', root_path, class: 'button' %>
       </div>
 
       <div class="nav-right nav-menu">
-        <%= link_to 'Home', root_path, class: 'nav-item' %>
-        <%= link_to 'New Movie', new_movie_path, class: 'nav-item' %>
+        <p class="control has-addons">
+          <%= form_tag movies_path, method: :get do %>
+            <p class="control has-addons">
+              <%= text_field_tag :search, params[:search], placeholder: 'Search movies', class: 'input' %>
+              <%= submit_tag 'Search', name: nil, class: 'button' %>
+            </p>
+          <% end%>
+        </p>
+        <%= link_to 'New Movie', new_movie_path, class: 'nav-item button is-link' %>
       </div>
     </nav>
     <%= yield %>
