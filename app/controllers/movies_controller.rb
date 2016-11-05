@@ -32,6 +32,11 @@ class MoviesController < ApplicationController
     end
   end
 
+  def destroy
+    @movie.destroy
+    redirect_to root_path
+  end
+
   private 
 
   def find_movie
